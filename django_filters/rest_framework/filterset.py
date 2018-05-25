@@ -7,11 +7,10 @@ from rest_framework.serializers import Serializer
 from django_filters import filterset
 
 from .. import compat
-from .filters import BooleanFilter, IsoDateTimeFilter
+from .filters import BooleanFilter
 
 FILTER_FOR_DBFIELD_DEFAULTS = deepcopy(filterset.FILTER_FOR_DBFIELD_DEFAULTS)
 FILTER_FOR_DBFIELD_DEFAULTS.update({
-    models.DateTimeField: {'filter_class': IsoDateTimeFilter},
     models.BooleanField: {'filter_class': BooleanFilter},
 })
 
