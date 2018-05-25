@@ -1,47 +1,47 @@
 from rest_framework import fields
 
-from .. import filters
+from .. import filters as base_filters
 
 
-class CharFilter(filters.CharFilter):
+class CharFilter(base_filters.CharFilter):
     field_class = fields.CharField
 
 
-class BooleanFilter(filters.BooleanFilter):
+class BooleanFilter(base_filters.BooleanFilter):
     field_class = fields.BooleanField
 
 
-class NumberFilter(filters.NumberFilter):
+class NumberFilter(base_filters.NumberFilter):
     field_class = fields.FloatField
 
 
-class ListFilter(filters.MultipleChoiceFilter):
+class ListFilter(base_filters.MultipleChoiceFilter):
     field_class = fields.ListField
 
 
-class ChoiceFilter(filters.ChoiceFilter):
+class ChoiceFilter(base_filters.ChoiceFilter):
     field_class = fields.ChoiceField
 
 
-class UUIDFilter(filters.UUIDFilter):
+class UUIDFilter(base_filters.UUIDFilter):
     field_class = fields.UUIDField
 
 
-class MultipleChoiceFilter(filters.MultipleChoiceFilter):
+class MultipleChoiceFilter(base_filters.MultipleChoiceFilter):
     field_class = fields.MultipleChoiceField
 
 
-class DateFilter(filters.DateFilter):
+class DateFilter(base_filters.DateFilter):
     field_class = fields.DateField
 
 
-class DateTimeFilter(filters.DateTimeFilter):
+class DateTimeFilter(base_filters.DateTimeFilter):
     field_class = fields.DateTimeField
 
 
-class TimeFilter(filters.TimeFilter):
+class TimeFilter(base_filters.TimeFilter):
     field_class = fields.TimeField
 
 
-class DurationFilter(filters.DurationFilter):
+class DurationFilter(base_filters.DurationFilter):
     field_class = fields.DurationField
