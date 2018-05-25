@@ -9,6 +9,7 @@ from django.db.models.constants import LOOKUP_SEP
 from django.db.models.expressions import Expression
 from django.db.models.fields import FieldDoesNotExist
 from django.db.models.fields.related import ForeignObjectRel, RelatedField
+from django.forms.utils import ErrorDict
 from django.utils import timezone
 from django.utils.encoding import force_text
 from django.utils.text import capfirst
@@ -241,9 +242,12 @@ def translate_validation(error_dict):
     # an import loop when importing django_filters inside the project settings.
     from rest_framework.exceptions import ValidationError, ErrorDetail
 
-    exc = OrderedDict(
-        (key, [ErrorDetail(e.message, code=e.code) for e in error_list])
-        for key, error_list in error_dict.as_data().items()
-    )
+    if isinstance(error_dict, ErrorDict):
+        exc = OrderedDict(
+            (key, [ErrorDetail(e.message, code=e.code) for e in error_list])
+            for key, error_list in error_dict.as_data().items()
+        )
+    else:
+        exc = error_dict
 
     return ValidationError(exc)
